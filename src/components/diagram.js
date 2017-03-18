@@ -2,7 +2,7 @@ import * as SRD from "storm-react-diagrams";
 //import * as React from "react";
 import React, { Component } from 'react';
 //import * as ReactDOM from "react-dom";
-
+import { connect } from 'react-redux';
 
 // declare var require: {
 //     <T>(path: string): T;
@@ -44,18 +44,25 @@ import React, { Component } from 'react';
 	//ReactDOM.render(element, document.body);
 	
 //}
-
+@connect((store)=>{
+	return {
+		user: 'ferda',
+		store: store
+	}
+})
 class Diagram extends Component {
 
   render() {
 //1) setup the diagram engine
-    var engine = new SRD.DiagramEngine();
+  var engine = new SRD.DiagramEngine();
 	engine.registerNodeFactory(new SRD.DefaultNodeFactory());
 	engine.registerLinkFactory(new SRD.DefaultLinkFactory());
 
 	//2) setup the diagram model
 	var model = new SRD.DiagramModel();
 	
+console.log('Render:', this.props);
+
 	for(var i =0;i < 2;i++){
 		for(var j = 0;j < 2;j++){
 			generateNodes(model, i*200, j*100);
