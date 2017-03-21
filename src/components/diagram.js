@@ -7,22 +7,22 @@ import { connect } from 'react-redux';
 //require("../test.scss");
 	
 @connect((store)=>{
-	return {
-		user: 'ferda',
-		engine: store.engine 
-	//	store: store
+	return {		
+		engine: store.engine,
+		version:store.engine.version	
 	}
 })
 class Diagram extends Component {
 
   render() {
 
-	console.log('Rendering diagram');
+	console.log('Rendering diagram ', name);
 	console.log(this.props);
+
     var element = <SRD.DiagramWidget diagramEngine={this.props.engine}/>
                
-    return ( element
-    );
+    return ( element );
+		
   }
 }
 

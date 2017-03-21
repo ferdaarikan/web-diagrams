@@ -33,10 +33,13 @@ const reducer = (state = initialState, action)=> {
       return {...state, engine:action.payload }
     break;     
    case "ADD_NODE":
-      var model = state.engine.getDiagramModel();
+      var engine = state.engine;
+      var model = engine.getDiagramModel();
       console.log(model);
-      model.addNode(node);      
-      return {...state};//, engine:action.payload }
+      var newNode = nodeBuilder(def);
+      model.addNode(newNode);            
+      engine.version = new Date().getMilliseconds();
+      return Object.assign({},state, {engine: engine });
     break;
   default:        
   return {...state}
